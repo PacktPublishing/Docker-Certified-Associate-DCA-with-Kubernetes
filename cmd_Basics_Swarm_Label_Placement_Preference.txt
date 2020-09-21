@@ -1,0 +1,18 @@
+ docker node update --label-add zone=east node1
+ docker node update --label-add zone=west node2
+ 
+ #node 1 in east and node2-5 in west
+ 
+  docker service create \
+       --replicas 8 \
+       --name nginx_8 \
+       --placement-pref spread=node.labels.zone \
+  nginx
+ 
+ docker service ps nginx_8
+ 
+ docker service ps --format 'table {{.ID}}\t{{.Node}}\t{{.CurrentState}}' global_service_label
+ 
+ docker service rm nginx_8
+ 
+ add new worker to the cluster

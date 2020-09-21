@@ -1,0 +1,10 @@
+docker service create --name global_service_label --mode global --constraint 'node.labels.nodetype==worker' nginx
+
+docker service ps global_service_label
+
+docker service ps --format 'table {{.ID}}\t{{.Node}}\t{{.CurrentState}}' global_service_label
+
+docker node update --label-rm nodetype node5
+
+docker node update --label-add nodetype=worker node5  
+

@@ -1,0 +1,5 @@
+docker run -it --rm docker/dtr:2.6.2 install \
+--ucp-url ec2-54-70-53-254.us-west-2.compute.amazonaws.com:443 \
+--ucp-username admin \
+--ucp-password admin1234 \
+--ucp-insecure-tls

@@ -1,0 +1,15 @@
+docker swarm init --autolock
+docker swarm update --autolock=true
+docker swarm update --autolock=false
+
+sudo service docker restart
+ 
+docker service ls
+
+
+docker swarm unlock
+
+docker swarm unlock-key
+
+
+docker swarm unlock-key --rotate

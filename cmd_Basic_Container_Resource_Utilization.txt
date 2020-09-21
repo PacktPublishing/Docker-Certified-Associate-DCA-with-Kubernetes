@@ -1,0 +1,21 @@
+docker container run -d --name nginx-lmt-test1 -p 6051:80 nginx
+
+docker container stats
+
+docker container run -d --name nginx-lmt-test2 -p 6052:80 nginx
+
+docker container run -d --name nginx-lmt-test3 --memory 128M -p 6053:80 nginx
+
+docker container update --memory 256M --memory-swap 256M nginx-lmt-test3
+
+docker container inspect nginx-lmt-test3 | grep -i memory
+
+docker container update --cpu-shares 2
+
+docker container inspect nginx-lmt-test3 | grep -i cpu
+
+docker container run -d --name nginx-lmt-test4 --cpu-shares 4 --memory 128M -p 6054:80 nginx
+
+docker container inspect nginx-lmt-test4 | grep -i cpu
+
+

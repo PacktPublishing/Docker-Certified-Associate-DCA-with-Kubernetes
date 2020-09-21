@@ -1,0 +1,15 @@
+docker service create --name drain_test --replicas 3 --publish published=8080,target=80 nginx
+
+docker node ls
+
+docker service ps redis
+ 
+docker node update --availability drain node3
+
+docker node inspect --pretty node3
+
+docker service ps redis
+
+docker node update --availability active node3
+ 
+docker node inspect --pretty node3

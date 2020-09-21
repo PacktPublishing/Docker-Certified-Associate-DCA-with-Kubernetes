@@ -1,0 +1,39 @@
+mkdir demo_copy
+cd demo_copy
+vi demo_copy
+
+echo "filecopytest" > filecopytest.txt
+echo "multiple_file1" > multiple_file1.txt
+echo "multiple_file2" > multiple_file2.txt
+echo "direct_to_workdir" > direct_to_workdir.txt
+
+mkdir folder1
+cd folder1
+echo "in_folder1" > in_folder1.txt
+
+
+vi demo_copy
+
+
+FROM alpine
+COPY filecopytest.txt copiedfile/filecopy.txt
+COPY multiple* copiedfile/files/
+
+COPY ./folder1/ copiedfolder/
+
+WORKDIR copiedfile
+
+COPY direct_to_workdir.txt after_workdir/
+
+WORKDIR /
+CMD ["sh"]
+
+docker image build --tag demo_copy:1.0 --file demo_copy .
+
+
+docker image ls
+docker image rm demo_copy:1.0
+
+docker container run -it --rm --name cntr_demo_copy demo_copy:1.0
+
+docker container rm cntr_demo_copy

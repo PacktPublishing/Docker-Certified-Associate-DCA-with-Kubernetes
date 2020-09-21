@@ -1,0 +1,44 @@
+docker network create --subnet "10.2.0.0/16" my-multi-net
+
+
+docker container run -d --name nginx_multi --network my-multi-net  nginx:alpine
+docker container run -d --name redis_multi --network my-multi-net redis:alpine
+
+docker container inspect nginx_multi
+docker container inspect redis_multi
+
+
+docker network connect mynetwork1 nginx_multi
+docker network connect my-private-net redis_multi
+
+
+
+docker container exec nginx_multi ping -c 3 google.com
+docker container inspect nginx_multi
+docker container exec nginx_multi cat /etc/hosts
+docker container exec nginx_multi ifconfig
+docker container exec nginx_multi cat /etc/resolv.conf
+docker container exec nginx_multi ip addr show eth0
+docker container exec nginx_multi ip addr show eth1
+docker container exec nginx_multi ip route
+
+
+docker container exec redis_multi ping -c 3 google.com
+docker container inspect redis_multi
+docker container exec redis_multi cat /etc/hosts
+docker container exec redis_multi ifconfig
+docker container exec redis_multi cat /etc/resolv.conf
+docker container exec redis_multi ip addr show eth0
+docker container exec redis_multi ip addr show eth1
+docker container exec redis_multi ip route
+
+
+docker container exec nginx_multi ping -c 3 redis_multi
+docker container exec redis_multi ping -c 3 nginx_multi
+
+docker container exec nginx_multi ping -c 3 redis_cust_subnet
+docker container exec nginx_multi ping -c 3 nginx
+
+docker container exec redis_multi ping -c 3 redis_cust_subnet
+docker container exec redis_multi ping -c 3 nginx
+

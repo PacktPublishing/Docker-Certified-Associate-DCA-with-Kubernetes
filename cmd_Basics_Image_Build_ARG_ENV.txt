@@ -1,0 +1,36 @@
+mkdir arg_env
+cd arg_env
+echo "filecopytest" > filecopytest.txt
+vi arg_env
+
+FROM alpine
+ENV app_environment="prod"
+ARG app_dir
+RUN echo ${app_dir}
+COPY filecopytest.txt ${app_dir}/filecopy.txt
+WORKDIR /
+CMD ["sh"]
+
+docker image build --build-arg app_dir="app_dir_arg" --tag arg_env:1.0 --file arg_env .
+
+
+docker image ls
+
+docker image inspect arg_env:1.0
+
+docker image inspect arg_env:1.0 | grep -i Env
+
+
+docker container run -it --rm --env app_environment="unit_test" --name cntr_arg_env arg_env:1.0
+
+echo "$app_environment"
+
+docker container run -it --rm --name cntr_arg_env arg_env:1.0
+
+echo "$app_environment"
+
+docker image rm arg_env:1.0
+
+docker container run -it --rm --env app_environment="unit_test" --name cntr_arg_env arg_env:1.0
+
+docker container rm cntr_arg_env

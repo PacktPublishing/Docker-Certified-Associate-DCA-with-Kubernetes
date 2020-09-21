@@ -1,0 +1,14 @@
+FROM alpine
+
+docker image build --tag demo_from:1.0 --file demo_from .
+
+Note: There is a dot in the end of the above command
+
+docker image ls
+
+docker image inspect demo_from:1.0
+
+docker history demo_from:1.0
+
+
+

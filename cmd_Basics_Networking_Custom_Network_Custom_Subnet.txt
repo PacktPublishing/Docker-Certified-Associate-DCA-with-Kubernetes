@@ -1,0 +1,21 @@
+docker network create --subnet "10.1.0.0/16" my-private-net
+
+docker network ls
+
+docker network inspect my-private-net
+
+docker container run -d --name redis_cust_subnet --network my-private-net redis:alpine
+
+
+
+docker container exec redis_cust_subnet ping -c 3 google.com
+docker container inspect redis_cust_subnet
+docker container exec redis_cust_subnet cat /etc/hosts
+docker container exec redis_cust_subnet ifconfig
+docker container exec redis_cust_subnet cat /etc/resolv.conf
+docker container exec redis_cust_subnet ip addr show eth0
+docker container exec redis_cust_subnet ip route
+
+docker container exec nginx ping -c 3 redis_cust_subnet
+
+docker container exec redis_cust_subnet ping -c 3 nginx

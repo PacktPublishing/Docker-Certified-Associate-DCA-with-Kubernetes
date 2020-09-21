@@ -1,0 +1,12 @@
+docker service create --name MyService --replicas 2 --publish published=8080,target=80 nginx
+
+docker service list
+
+docker service ps MyService
+
+
+docker service create --name MyService-2 --replicas 2 --publish published=9090,target=80 nginx
+
+docker service list
+
+docker service ps MyService-2

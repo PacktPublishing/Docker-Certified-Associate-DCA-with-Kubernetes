@@ -1,0 +1,10 @@
+docker node ls
+
+docker node demote manager2
+
+docker node promote manager2
+
+docker node demote manager1
+
+docker node demote manager2
+

@@ -1,0 +1,18 @@
+mkdir testcp
+
+cd testcp
+
+docker container run -d --name nginx-two -p 6022:80 nginx
+
+docker container diff nginx-two
+
+vi filecopy_test.txt
+
+docker cp filecopy_test.txt nginx-two:/filecopy_test_inContainer.txt
+
+docker container diff nginx-two
+
+docker container exec -i -t nginx-two /bin/bash
+
+docker cp nginx-two:/filecopy_test_inContainer.txt from_container.txt
+

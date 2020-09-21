@@ -1,0 +1,22 @@
+vi add_run
+
+FROM ubuntu
+MAINTAINER Muthukumar
+RUN apt-get update
+RUN apt-get install -y nginx
+ADD https://raw.githubusercontent.com/muthu4all/DCA/master/index.html /var/www/html/
+RUN chmod 755 /var/www/html/index.html
+ENTRYPOINT ["/usr/sbin/nginx","-g","daemon off;"]
+EXPOSE 80
+
+docker image build --tag add_run:1.0 --file add_run .
+
+
+docker image ls
+docker image rm add_run:1.0
+
+docker container run -d --rm --name add_run -p 80:80 add_run:1.0
+docker container exec -i -t add_run /bin/bash
+
+
+docker container rm -f add_run

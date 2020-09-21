@@ -1,0 +1,12 @@
+docker container create --name nginx-create-test -p 6060:80 nginx
+
+docker container ls
+
+docker container create --name nginx-create-test-2 -p 6061:80 nginx
+
+docker container ls -a
+
+docker container start nginx-create-test
+
+docker container start nginx-create-test-2
+

@@ -1,0 +1,30 @@
+docker container run -itd --name alpine-lb-1 --network-alias lb_alias --network load_balance alpine
+docker container run -itd --name alpine-lb-2 --network-alias lb_alias --network load_balance alpine
+
+
+-i              : Keep STDIN open even if not attached
+-t              : Allocate a pseudo-tty
+
+
+
+docker network inspect load_balance 
+
+
+docker container inspect --format '{{ .NetworkSettings }}' alpine-lb-1
+
+docker container inspect alpine-lb-2
+
+
+docker container exec alpine-lb-1 ping -c 3 alpine-lb-2
+
+docker container exec alpine-lb-2 ping -c 3 alpine-lb-1
+
+
+
+docker container exec alpine-lb-1 ping -c 3 lb_alias
+
+
+docker container rm -f alpine-lb-2 alpine-lb-1
+
+
+docker network rm load_balance

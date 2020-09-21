@@ -1,0 +1,126 @@
+dca_Docker_Enterprise
+~~~~~~~~~~~~~~~~~~~
+
+Ubuntu 16
+
+
+sudo apt-get update
+
+sudo apt-get -y upgrade
+
+sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+    
+    
+    
+DOCKER_EE_URL="https://storebits.docker.com/ee/trial/sub-37a91f53-d082-4631-be81-4b02469bec78"
+DOCKER_EE_VERSION=test    
+
+
+curl -fsSL "${DOCKER_EE_URL}/ubuntu/gpg" | sudo apt-key add -
+
+sudo add-apt-repository \
+   "deb [arch=amd64] $DOCKER_EE_URL/ubuntu \
+   $(lsb_release -cs) \
+   stable-19.03"
+   
+   
+   
+   
+
+sudo apt-get update
+
+
+sudo apt-get install -y docker-ee
+
+
+sudo usermod -aG docker $USER
+
+docker info
+
+/etc/docker/key.json
+
+
+
+Installing Docker's Universal Control Plane
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+docker image pull docker/ucp:3.2.5
+
+##
+docker container run --rm -it --name ucp \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  docker/ucp:3.2.5 install \
+  --host-address <node-ip-address> \
+  --interactive
+  
+##  
+docker container run -it --rm --name ucp \
+-v /var/run/docker.sock:/var/run/docker.sock \
+docker/ucp:3.2.5 install \
+--host-address {internal IP Address of UCP Node}  \
+--admin-username admin \
+--admin-password {add your password here} \
+--san {Internal IP of UCP node, i.e., 172.31.0.99}  \
+--san {External DNS name UCP node, i.e., ucp.mydomain.com} \
+--san {External IP of UCP node, i.e., 54.189.176.6} \
+--interactive
+
+
+docker run -it --rm --name ucp \
+-v /var/run/docker.sock:/var/run/docker.sock \
+docker/ucp:3.2.5 install \
+--swarm-port 3376 \
+--host-address 172.31.7.65 \
+--admin-username admin \
+--admin-password admin1234 \
+--san ip-172-31-7-65.us-west-2.compute.internal \
+--san ec2-54-200-255-94.us-west-2.compute.amazonaws.com \
+--san 54.200.255.94 \
+--interactive
+
+
+https://ec2-54-200-255-94.us-west-2.compute.amazonaws.com
+
+
+ec2-54-186-8-3.us-west-2.compute.amazonaws.com
+ec2-52-39-239-98.us-west-2.compute.amazonaws.com
+ec2-34-220-3-50.us-west-2.compute.amazonaws.com
+
+docker swarm join --token SWMTKN-1-5stlgs0clxrcx0wj5xdtvtazeicb76acgd8wvmkuvsu1db4n0c-b0nngxu8ffrutyc23n8neg25l 172.31.26.189:2377
+
+
+
+
+DTR Installation
+~~~~~~~~~~~~~~
+
+
+
+docker run -it --rm docker/dtr:2.6.2 install \
+--ucp-url <ucp_host_dns or IP>:443 \
+--ucp-username admin \
+--ucp-password <ucp password> \
+--ucp-insecure-tls \
+--ucp-node <name node where DTR is to be installed>
+
+
+docker run -it --rm docker/dtr:2.6.2 install \
+--ucp-url ec2-54-70-53-254.us-west-2.compute.amazonaws.com:443 \
+--ucp-username admin \
+--ucp-node ip-172-31-15-101 \
+--ucp-password admin1234 \
+--ucp-insecure-tls \
+--replica-https-port 444 \
+--replica-http-port 81
+
+
+docker run -it --rm docker/dtr:2.6.2 install \
+--ucp-url ec2-54-70-53-254.us-west-2.compute.amazonaws.com:443 \
+--ucp-username admin \
+--ucp-password admin1234 \
+--ucp-insecure-tls

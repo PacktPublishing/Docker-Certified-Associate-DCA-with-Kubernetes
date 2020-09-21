@@ -1,0 +1,20 @@
+FROM alpine
+LABEL "description"="My development image"
+LABEL version="1.0"
+LABEL customlabel="custmvalue"
+LABEL support-contact="contactus@sample.com"
+
+
+docker image build --tag demo_label:1.0 --file demo_label .
+
+
+docker image ls
+
+docker history --no-trunc <docker_id>
+
+docker image ls
+
+docker image inspect demo_label:1.0
+
+
+

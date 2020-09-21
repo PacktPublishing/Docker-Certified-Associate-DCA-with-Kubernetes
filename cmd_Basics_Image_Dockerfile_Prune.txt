@@ -1,0 +1,14 @@
+mkdir dockerfile_build
+
+cd dockerfile_build
+
+vi docerfileubuntu
+
+docker image build -t myimage_from_dockerbuild:1.0 --file dockerfileubuntu . 
+
+docker image ls
+
+docker image prune
+
+docker image prune --all
+

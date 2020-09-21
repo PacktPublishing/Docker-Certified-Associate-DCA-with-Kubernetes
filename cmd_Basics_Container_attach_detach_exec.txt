@@ -1,0 +1,8 @@
+docker container ls
+
+docker container run --name nginx-run-test-3 -p 6061:80 nginx
+
+docker container exec -i -t nginx-create-test /bin/bash
+
+docker container exec -i -t nginx-create-test cat /etc/debian_version
+

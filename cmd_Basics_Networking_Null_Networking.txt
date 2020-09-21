@@ -1,0 +1,11 @@
+docker container run -d --name redis-null --network none redis:alpine
+
+docker container run -d --name nginx-null --network none nginx:alpine
+
+docker container exec redis-null cat /etc/hosts
+docker container exec redis-null ifconfig
+docker container exec redis-null cat /etc/resolv.conf
+docker container exec redis-null ip addr show eth0
+docker container exec redis-null ping -c 3 google.com
+
+docker container exec redis-null ip route

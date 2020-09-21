@@ -1,0 +1,14 @@
+docker swarm init
+
+docker swarm join-token worker
+
+docker swarm join --token SWMTKN-1-4s6923h3qlavoqw3wcd8s7aho4sehwekrdfiu9c0dw90aodg27-dvy1aktsydef213ajdg3iwqhb 192.168.0.51:2377
+
+Note: Token and ip to be changed
+
+docker node ls
+
+docker service ls
+
+docker service ps nginx-global
+

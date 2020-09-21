@@ -1,0 +1,22 @@
+docker container run -d --name nginx-vol -p 8051:80 nginx
+
+docker container inspect nginx-vol
+
+sudo su
+
+docker container rm -f nginx-vol
+
+docker volume create vol1
+
+docker volume create vol2
+
+docker volume ls
+
+docker volume create
+
+docker volume ls --filter dangling=true
+
+docker volume prune
+
+
+

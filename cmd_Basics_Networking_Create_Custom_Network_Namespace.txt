@@ -1,0 +1,15 @@
+docker network ls
+
+docker network inspect bridge
+
+
+
+
+docker container run -d --name redis-def redis:alpine
+
+docker container run -d --name nginx-def nginx:alpine
+
+
+docker container exec nginx-def ping -c 3 redis-def
+
+docker container exec redis-def ping -c 3 nginx-def

@@ -1,0 +1,13 @@
+docker container run -d --name nginx-export -p 6095:80 nginx
+
+docker container exec -i -t nginx-export /bin/bash
+
+touch export_test.txt
+
+mkdir export_test
+cd export_test
+
+docker container export nginx-export -o nginx-exported-file.tar
+
+tar -xvf nginx-exported-file.tar
+

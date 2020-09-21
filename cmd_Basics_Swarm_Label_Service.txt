@@ -1,0 +1,23 @@
+ docker node update --label-add nodetype=master node1
+ docker node update --label-add nodetype=worker node2
+ 
+ 
+ 
+ 
+ docker service create \
+      --replicas 8 \
+      --name no_constraint_service \
+    nginx
+  
+    docker service ps no_constraint_service
+    
+    
+  docker service create \
+   --replicas 3 \
+   --name node_label_test \
+   --constraint node.labels.nodetype==worker \
+   nginx
+   
+  docker service ls
+  
+  docker service ps node_label_test    

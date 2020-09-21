@@ -1,0 +1,18 @@
+docker pull nginx
+
+docker pull nginx:1.17-alpine
+
+docker image ls
+
+mkdir save_load
+
+cd save_load
+
+docker image save nginx:latest -o nginx_latest
+
+docker image load -i nginx_latest
+
+docker image import nginx_latest myimage:1.0
+
+
+

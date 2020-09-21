@@ -1,0 +1,6 @@
+aws.amaozon.com
+
+https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+
+AWS Image Userid: ec2-user
+

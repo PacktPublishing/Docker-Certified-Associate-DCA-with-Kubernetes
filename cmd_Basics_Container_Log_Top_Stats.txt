@@ -1,0 +1,11 @@
+docker container run -d --name log_stats -p 6061:80 nginx
+
+docker container ls
+
+docker container top log_stats
+
+docker container stats log_stats
+
+docker container run -d --name logs_stats_2 -p 6062:80 nginx
+
+docker container run -d --name logs_stats_3 -p 6063:80 nginx

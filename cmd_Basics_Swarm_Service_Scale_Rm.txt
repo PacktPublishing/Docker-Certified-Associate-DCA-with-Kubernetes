@@ -1,0 +1,14 @@
+docker service list
+
+docker service inspect MyService
+
+docker service inspect --pretty MyService
+
+docker service scale MyService=3
+
+docker service ps MyService
+
+docker service scale MyService=4
+
+docker service rm MyService
+

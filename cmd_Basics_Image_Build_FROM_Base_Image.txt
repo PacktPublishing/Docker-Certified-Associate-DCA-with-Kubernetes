@@ -1,0 +1,11 @@
+FROM scratch
+COPY hello /
+CMD ["/hello"]
+
+
+chmod 755 hello
+
+docker build --tag hello .
+
+docker run --rm hello
+

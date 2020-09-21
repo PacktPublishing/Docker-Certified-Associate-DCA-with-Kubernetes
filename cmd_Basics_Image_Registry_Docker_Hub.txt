@@ -1,0 +1,22 @@
+
+docker login
+
+docker images
+
+docker image pull alpine
+
+docker image tag alpine muthu4all/muthu4all_alpine
+
+docker image push muthu4all/muthu4all_alpine
+
+docker image rm muthu4all/muthu4all_alpine
+
+docker image pull muthu4all/muthu4all_alpine 
+
+docker image ls
+
+docker image rm muthu4all/muthu4all_alpine
+
+docker image ls
+
+docker image pull muthu4all/muthu4all_alpine

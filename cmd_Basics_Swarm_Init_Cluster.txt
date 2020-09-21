@@ -1,0 +1,10 @@
+docker swarm --help
+
+docker swarm init
+
+docker node ls
+
+docker swarm join --token <<token>> <<master_ip>>:2377
+
+docker node ls
+

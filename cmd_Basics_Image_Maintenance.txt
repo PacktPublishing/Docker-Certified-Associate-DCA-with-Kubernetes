@@ -1,0 +1,16 @@
+docker image ls
+
+docker pull alpine
+
+docker pull alpine:3.9.5
+
+docker history nginx
+
+docker image inspect nginx
+
+docker image rm nginx
+
+docker image prune --help
+
+docker image prune --all
+

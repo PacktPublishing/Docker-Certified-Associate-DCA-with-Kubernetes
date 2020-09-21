@@ -1,0 +1,18 @@
+docker service create --name MyService3 --replicas 2 --publish published=8080,target=80 nginx:1.16
+
+docker service ps MyService3
+
+docker service update --image nginx:1.17 MyService3
+
+
+docker service inspect MyService3 --pretty
+
+docker service ps MyService3 --format '{{.ID}} {{.Name}} {{.Image}} {{.DesiredState}} {{.CurrentState}}'
+
+docker service ps MyService3 --format '{{.ID}} {{.Name}} {{.Image}} {{.DesiredState}} {{.CurrentState}}' --filter "desired-state=Running"
+
+docker service rollback MyService3
+
+docker service ps MyService3
+
+docker service rm MyService3

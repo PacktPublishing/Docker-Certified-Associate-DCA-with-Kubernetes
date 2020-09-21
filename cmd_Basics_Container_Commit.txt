@@ -1,0 +1,23 @@
+docker container run -d --name nginx-commit -p 6081:80 nginx
+
+docker container ls
+
+docker container exec -i -t nginx-commit /bin/bash
+
+apt update
+
+apt-get install python3.6
+
+python3 -V
+
+docker container commit nginx-commit nginx_with_py:1.0
+
+docker image ls
+
+docker container run -d --name nginx-py -p 6091:80 nginx_with_py:1.0
+
+docker container exec -i -t nginx_with_py /bin/bash
+
+docker container exec -i -t nginx-py /bin/bash
+
+

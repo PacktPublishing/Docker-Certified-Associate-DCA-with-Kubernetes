@@ -1,0 +1,16 @@
+docker container run -d --name redis_host --network host redis:alpine
+
+docker container run -d --name redis_host_2 --network host redis:alpine
+
+docker container inspect redis_host
+
+docker container exec redis_host ping -c 3 google.com
+docker container inspect redis_host
+docker container exec redis_host cat /etc/hosts
+docker container exec redis_host ifconfig
+docker container exec redis_host cat /etc/resolv.conf
+docker container exec redis_host ip addr show eth0
+docker container exec redis_host ip addr show eth1
+docker container exec redis_host ip route
+
+docker container run -d --name nginx_host --network host nginx:alpine

@@ -1,0 +1,18 @@
+docker node ls
+
+docker service create --mode global --name nginx-global nginx
+
+
+docker service ps nginx-global
+ 
+docker node update --availability drain node3
+
+docker node ls
+
+docker service ps nginx-global
+
+docker node update --availability active node3
+
+docker node ls
+
+docker service ps nginx-global

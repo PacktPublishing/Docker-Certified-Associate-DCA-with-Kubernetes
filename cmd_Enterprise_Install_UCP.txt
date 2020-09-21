@@ -1,0 +1,20 @@
+docker image pull docker/ucp:3.2.5
+
+##
+docker container run --rm -it --name ucp \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  docker/ucp:3.2.5 install \
+  --host-address <node-ip-address> \
+  --interactive
+  
+docker run -it --rm --name ucp \
+-v /var/run/docker.sock:/var/run/docker.sock \
+docker/ucp:3.2.5 install \
+--swarm-port 3376 \
+--host-address 172.31.7.65 \
+--admin-username admin \
+--admin-password admin1234 \
+--san ip-172-31-7-65.us-west-2.compute.internal \
+--san ec2-54-200-255-94.us-west-2.compute.amazonaws.com \
+--san 54.200.255.94 \
+--interactive

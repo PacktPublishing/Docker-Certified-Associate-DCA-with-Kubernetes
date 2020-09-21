@@ -1,0 +1,22 @@
+docker volume create --name vol_restrict_size --opt o=size=100m
+
+docker volume inspect vol_restrict_size
+
+docker info
+
+docker info | grep -i driver
+
+docker container ls
+
+docker container rm -f using_vol1_reuse
+
+docker volume ls
+
+docker volume prune
+
+docker volume rm vol_restrict_size
+
+docker volume ls
+
+
+

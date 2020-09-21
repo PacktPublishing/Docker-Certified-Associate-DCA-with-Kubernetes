@@ -1,0 +1,31 @@
+docker node update --label-add type=prod node1
+docker node update --label-add type=devel node4
+  
+ 
+docker service create \
+   --name my-nginx \
+   --mode global \
+   --constraint node.labels.zone==west \
+   --constraint node.labels.type!=devel \
+  nginx
+ 
+docker service ps --format 'table {{.ID}}\t{{.Node}}\t{{.CurrentState}}' my-nginx
+
+
+ docker service create \
+        --replicas 4 \
+        --name nginx_4 \
+        --placement-pref spread=node.labels.nodetype \
+        --constraint node.labels.type!=devel \
+        --constraint node.labels.nodetype!=master \
+  nginx
+ 
+ 
+  docker service ps nginx_4
+ 
+ docker service ps --format 'table {{.ID}}\t{{.Node}}\t{{.CurrentState}}' nginx_4
+ 
+ 
+ docker swarm join-token worker
+ 
+ 

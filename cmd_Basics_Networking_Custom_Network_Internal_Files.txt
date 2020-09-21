@@ -1,0 +1,31 @@
+docker network create mynetwork1
+
+docker network inspect mynetwork1
+
+docker container run -d --name redis --network mynetwork1 redis:alpine
+
+docker container run -d --name nginx --network mynetwork1 nginx:alpine
+
+docker container exec nginx ping -c 3 redis
+docker container exec nginx ping -c 3 redis.mynetwork1
+
+
+docker container exec redis ping -c 3 nginx
+
+docker container inspect redis
+
+docker container exec redis cat /etc/hosts
+docker container exec redis ifconfig
+docker container exec redis cat /etc/resolv.conf
+docker container exec redis nslookup nginx 127.0.0.11
+docker container exec redis ip addr show eth0
+docker container exec redis ip route
+
+
+docker container exec nginx cat /etc/hosts
+docker container exec nginx ifconfig
+docker container exec nginx hostname
+docker container exec nginx cat /etc/resolv.conf
+docker container exec nginx nslookup redis 127.0.0.11
+docker container exec nginx ip addr show eth0
+docker container exec nginx ip route

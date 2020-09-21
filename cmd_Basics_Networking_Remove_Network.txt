@@ -1,0 +1,20 @@
+docker network create --subnet "10.3.0.0/16" remove_test
+
+docker network ls
+
+
+docker container run -d --name remove_test_1 --network remove_test  nginx:alpine
+docker container run -d --name remove_test_2 --network remove_test redis:alpine
+
+
+docker network inspect remove_test 
+
+docker network rm remove_test 
+
+
+docker container rm -f remove_test_1
+docker container rm -f remove_test_2
+
+docker network rm remove_test 
+
+docker network ls

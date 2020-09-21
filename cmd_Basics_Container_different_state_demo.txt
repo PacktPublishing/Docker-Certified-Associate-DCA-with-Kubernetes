@@ -1,0 +1,29 @@
+docker container run -d --name nginx-state-1 -p 6071:80 nginx
+
+docker container run -d --name nginx-state-2 -p 6072:80 nginx
+
+docker container ls
+
+docker container run -d --name nginx-state-3 -p 6073:80 nginx
+
+docker container run -d --name nginx-state-4 -p 6074:80 nginx
+
+docker container prune
+
+docker container ls -a
+
+docker container rm nginx-create-test
+
+docker container rm -f nginx-create-test
+
+docker container ls -a
+
+docker container pause nginx-state-2
+
+docker container stop nginx-state-3
+
+docker container unpause nginx-state-2
+
+docker container restart nginx-state-4
+
+docker container kill nginx-state-2
